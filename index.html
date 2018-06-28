@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script>
+
+function onTransform() {
+    input = document.getElementById("input");
+    output = document.getElementById("output");
+
+    report = JSON.parse(input.value);
+
+    output.value = "";
+
+    output.value += "## Exception";
+    output.value += "\n* __User Action:__ " + report.user_action;
+    output.value += "\n* __Request:__ " + report.request;
+    output.value += "\n* __Content Language:__ " + report.content_language;
+    output.value += "\n* __Servicet:__ " + report.service;
+    output.value += "\n* __Version:__ " + report.version;
+    output.value += "\n* __OS:__ " + report.os;
+
+    output.value += "\n" + report.user_comment + "\n";
+
+    output.value += "```\n";
+    report.exceptions.forEach(function(exception) {
+      output.value += exception
+      output.value += "\n-------------------\n\n";
+    });
+
+    output.value += "```";
+}
+    </script>
+    <style>
+      button {
+        display: block;
+      }
+    
+      textarea {
+        resize: both;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+   <h1>The incredible NPE to Markdown converter</h1>
+   <h3>1. Paste the bugreport JSON here</h3>
+   <textarea rows="20" cols="150" id="input"></textarea>
+   <h3>2. Click Transform</h3>
+   <button onClick="onTransform()">Transform</button>
+   <h3>3. Copy the markdown form her</h3>
+   <textarea rows="20" cols="150" id="output"></textarea>
+   <h3>4. Past it into your Gtihub issue</h3>
+  </body> 
+</html>
