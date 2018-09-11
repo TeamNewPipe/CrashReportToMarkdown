@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         html, body {
             font-family: Roboto, Arial;
@@ -17,12 +18,15 @@
             border: 0;
             border-radius: 4px;
             padding: 10px 15px;
-            margin: 15px 10px 15px 0;
+            margin: 0 10px 15px 0;
         }
         button:hover,
         button:focus,
         button:active {
             background: #3d3d3d;
+        }
+        div + button {
+            margin-top: 15px;
         }
         div {
             display: flex;
@@ -77,12 +81,11 @@
 <body>
 <h1>The incredible NPE to Markdown converter</h1>
 <h3>Paste the JSON bugreport here</h3>
-<div><textarea rows="1" cols="150" id="input" class="placeholder" placeholder="Paste the JSON bugreport here" onkeyup="onResize(this)"></textarea></div>
+<div><textarea rows="1" cols="150" id="input" class="placeholder" placeholder="Paste the JSON bugreport here" onchange="onResize(this)" onkeyup="onResize(this)"></textarea></div>
 <button onClick="onTransform()">transform</button>
-<button onClick="onCopy()">copy to clipboard</button>
-<a href="https://github.com/TeamNewPipe/NewPipe/issues/new"><button>new issue</button></a>
 <div><textarea rows="1" cols="150" id="output" class="placeholder" placeholder="Click transform and your human readable bugreport will appear here.  "></textarea></div>
 <h3>Paste it into your Github issue</h3>
+<button onClick="onCopy()">copy to clipboard</button>
 <a href="https://github.com/TeamNewPipe/NewPipe/issues/new"><button>new issue</button></a>
 <span id="clipboard-message">Copied to clipboard!</span>
 
@@ -128,7 +131,7 @@
             clipboardMsg.classList.remove("visible");
         }, 4000);
     }
-    
+
     function onResize(el) {
         lines = el.value.split('\n');
         el.rows = lines.length < 20 ? ""+lines.length+"" : '20';
