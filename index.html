@@ -103,13 +103,16 @@
 
         output.value += "\n" + report.user_comment + "\n";
 
-        output.value += "```\n";
-        report.exceptions.forEach(function(exception) {
-            output.value += exception
-            output.value += "\n-------------------\n\n";
+        output.value += "\n<details><summary><b>Crash log</b></summary><p>\n";
+        output.value += "\n```\n";
+        report.exceptions.forEach(function(exception, index) {
+            output.value += exception;
+            if (index !== report.exceptions.length - 1) output.value += "\n-------------------\n\n";
         });
 
-        output.value += "```";
+        output.value += "\n```\n";
+        output.value += "</p></details>\n";
+        output.value += "<hr>\n";
         onResize(output);
     }
 
