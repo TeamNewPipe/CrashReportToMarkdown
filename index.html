@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         html, body {
             font-family: Roboto, Arial, sans-serif;
@@ -73,15 +73,15 @@
     </style>
 </head>
 <body>
-<h1>The incredible NPE to Markdown converter</h1>
-<h3>Paste the JSON bugreport here</h3>
-<div><textarea rows="1" cols="150" id="input" class="placeholder" placeholder="Paste the JSON bugreport here" onchange="onResize(this)" onkeyup="onResize(this)"></textarea></div>
-<button onClick="onTransform()">transform</button>
-<div><textarea rows="1" cols="150" id="output" class="placeholder" placeholder="Click transform and your human readable bugreport will appear here.  "></textarea></div>
-<h3>Paste it into your Github issue</h3>
-<button onClick="onCopy()">copy to clipboard</button>
-<a href="https://github.com/TeamNewPipe/NewPipe/issues/new"><button>new issue</button></a>
-<span id="clipboard-message">Copied to clipboard!</span>
+    <h1>The incredible NPE to Markdown converter</h1>
+    <h3>Paste the JSON bugreport here</h3>
+    <div><textarea rows="1" cols="150" id="input" class="placeholder" placeholder="Paste the JSON bugreport here" onchange="onResize(this)" onkeyup="onResize(this)"></textarea></div>
+    <button onClick="onTransform()">transform</button>
+    <div><textarea rows="1" cols="150" id="output" class="placeholder" placeholder="Click transform and your human readable bugreport will appear here.  "></textarea></div>
+    <h3>Paste it into your Github issue</h3>
+    <button onClick="onCopy()">copy to clipboard</button>
+    <a href="https://github.com/TeamNewPipe/NewPipe/issues/new"><button>new issue</button></a>
+    <span id="clipboard-message">Copied to clipboard!</span>
 
 <script>
 
@@ -103,19 +103,22 @@
 
         output.value += "\n" + report.user_comment + "\n";
 
-        output.value += "```\n";
-        report.exceptions.forEach(function(exception) {
-            output.value += exception
-            output.value += "\n-------------------\n\n";
+        output.value += "\n<details><summary><b>Crash log</b></summary><p>\n";
+        output.value += "\n```\n";
+        report.exceptions.forEach(function(exception, index) {
+            output.value += exception;
+            if (index !== report.exceptions.length - 1) output.value += "\n-------------------\n\n";
         });
 
-        output.value += "```";
+        output.value += "\n```\n";
+        output.value += "</p></details>\n";
+        output.value += "<hr>\n";
         onResize(output);
     }
 
     function onCopy() {
         output = document.getElementById("output");
-        if (output.value == "") return;
+        if (output.value === "") return;
         output.select();
         document.execCommand("copy");
         output.blur();
@@ -129,9 +132,9 @@
     function onResize(el) {
         lines = el.value.split('\n');
         el.rows = lines.length < 20 ? ""+lines.length+"" : '20';
-        if (lines.length == 1) el.classList.add("placeholder")
-        else el.classList.remove("placeholder")
-    };
+        if (lines.length === 1) el.classList.add("placeholder");
+        else el.classList.remove("placeholder");
+    }
 </script>
 </body>
 </html>
