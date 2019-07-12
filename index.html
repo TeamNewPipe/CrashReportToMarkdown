@@ -90,7 +90,17 @@
         input = document.getElementById("input");
         output = document.getElementById("output");
 
-        report = JSON.parse(input.value);
+        try {
+            report = JSON.parse(input.value);
+        } catch (e) {
+            var msg = "Cannot convert bug report to Markdown:\n\n";
+            if (e instanceof SyntaxError) {
+                alert(msg + "Failed to parse JSON due to syntax error:\n" + e.message);
+            } else {
+                alert(msg + "Unknown error occurred:\n" + e.name + ": " + e.message)
+            }
+            return;
+        }
 
         output.value = "";
 
