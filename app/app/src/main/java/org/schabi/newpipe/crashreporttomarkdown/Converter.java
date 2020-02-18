@@ -30,8 +30,11 @@ public class Converter {
         output += "\n* __User Action:__ " + report.getString("user_action");
         output += "\n* __Request:__ " + report.getString("request");
         output += "\n* __Content Language:__ " + report.getString("content_language");
+        output += "\n* __GMT Time:__ " + report.getString("time");
+        output += "\n* __Package:__ " + report.getString("package");
+        output += "\n* __Version:__ " + report.getString("version");
         output += "\n* __Service:__ " + report.getString("service");
-        output += "\n* __Version:__ " + report.getString("os");
+        output += "\n* __Operating System:__ " + report.getString("os");
 
         output += "\n" + report.getString("user_comment") + "\n";
 

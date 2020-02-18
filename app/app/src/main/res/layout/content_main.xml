@@ -25,12 +25,12 @@
         android:id="@+id/textViewTitlePaste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_top"
+        android:layout_marginTop="24dp"
         android:text="@string/paste_info"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMainTitle" />
 
@@ -44,13 +44,11 @@
         app:layout_constraintStart_toStartOf="@+id/textViewTitlePaste"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitlePaste" />
 
-    <!-- Background color and radius can be edited in drawable/button.xml   -->
     <Button
         android:id="@+id/transform_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top"
-        android:background="@drawable/button"
         android:text="@string/transform"
         app:layout_constraintStart_toStartOf="@+id/editTextError"
         app:layout_constraintTop_toBottomOf="@+id/editTextError" />
@@ -69,17 +67,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top"
-        android:background="@drawable/button"
         android:text="@string/copy_to_clipboard"
         app:layout_constraintStart_toStartOf="@+id/markdownEditText"
         app:layout_constraintTop_toBottomOf="@+id/markdownEditText" />
 
     <Button
-        android:id="@+id/preview"
+        android:id="@+id/preview_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/button"
         android:text="@string/preview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.595"

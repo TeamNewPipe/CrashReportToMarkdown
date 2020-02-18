@@ -3,6 +3,7 @@ package org.schabi.newpipe.crashreporttomarkdown;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,13 +14,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String THEME = "theme";
     private EditText jsonEditText;
     private EditText humanReadableEditText;
     private Button transform;
@@ -34,25 +36,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.home));
         setSupportActionBar(toolbar);
+
+        checkTheme();
 
         jsonEditText = findViewById(R.id.editTextError);
         humanReadableEditText = findViewById(R.id.markdownEditText);
         transform = findViewById(R.id.transform_button);
         copy = findViewById(R.id.copy_button);
         clear = findViewById(R.id.clear);
-        preview = findViewById(R.id.preview);
+        preview = findViewById(R.id.preview_button);
         clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-
-        FloatingActionButton emailButton = findViewById(R.id.email_button);
-        emailButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.wip), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         FloatingActionButton githubIssue = findViewById(R.id.github_button);
         githubIssue.setOnClickListener(new View.OnClickListener() {
@@ -67,9 +61,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = jsonEditText.getText().toString();
-                String markdown = Converter.toMarkdown(text, getApplicationContext());
-                if (!markdown.equals(getString(R.string.error_while_parsing))) {
-                    humanReadableEditText.setText(markdown);
+                if (text.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), R.string.empty_text, Toast.LENGTH_SHORT).show();
+                } else {
+                    String markdown = Converter.toMarkdown(text, getApplicationContext());
+                    if (!markdown.equals(getString(R.string.error_while_parsing))) {
+                        humanReadableEditText.setText(markdown);
+                    }
                 }
             }
         });
@@ -97,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if (text.equals(getString(R.string.error_while_parsing))) {
                     Toast.makeText(getApplicationContext(), R.string.parsing_error_message, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.wip, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), PreviewActivity.class);
+                    intent.putExtra(getString(R.string.markdown_text_key), text);
+                    startActivity(intent);
                 }
             }
         });
@@ -125,11 +125,37 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case (R.id.theme):
-                Toast.makeText(getApplicationContext(), R.string.wip, Toast.LENGTH_SHORT).show();
-                break;
+                changeTheme();
             default:
                 return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void changeTheme() {
+        SharedPreferences settings = getApplicationContext().getSharedPreferences(THEME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        Boolean isNightMode = settings.getBoolean("theme_pref", false);
+        if (isNightMode) {
+            editor.putBoolean(getString(R.string.theme_sharedpreferences_key), false);
+            editor.apply();
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            editor.putBoolean(getString(R.string.theme_sharedpreferences_key), true);
+            editor.apply();
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+    }
+
+    private void checkTheme() {
+        //if we create settings, we could create a selector, with system default theme, battery saver and time
+        //https://developer.android.com/guide/topics/ui/look-and-feel/darktheme
+        SharedPreferences settings = getApplicationContext().getSharedPreferences(THEME, 0);
+        Boolean isNightMode = settings.getBoolean(getString(R.string.theme_sharedpreferences_key), false);
+        if (isNightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 }

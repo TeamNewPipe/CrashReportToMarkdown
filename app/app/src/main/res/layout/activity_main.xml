@@ -26,16 +26,8 @@
         android:id="@+id/github_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/github_mark_light_120px_plus" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/email_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/github_mark_light_120px_plus" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
