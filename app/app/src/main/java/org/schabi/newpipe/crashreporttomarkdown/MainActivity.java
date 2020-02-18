@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        checkTheme();
-
         jsonEditText = findViewById(R.id.editTextError);
         humanReadableEditText = findViewById(R.id.markdownEditText);
         transform = findViewById(R.id.transform_button);
@@ -47,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
         clear = findViewById(R.id.clear);
         preview = findViewById(R.id.preview_button);
         clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        checkTheme();
+        checkIntents();
 
+        //LISTENERS:
         FloatingActionButton githubIssue = findViewById(R.id.github_button);
         githubIssue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +102,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void checkIntents() {
+        // Get intent, action and MIME type
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null && (type.equals("text/plain") || type.equals("text/json"))) {
+            handleSendText(intent); // Handle text being sent
+        }
+    }
+
+    private void handleSendText(Intent intent) {
+        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (sharedText != null) {
+            jsonEditText.setText(sharedText);
+        }
     }
 
     @Override
