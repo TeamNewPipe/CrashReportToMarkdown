@@ -42,7 +42,7 @@
             font-size: 1.2em;
         }
         textarea.placeholder {
-            height: 1.2em;
+            height: 1.3em;
         }
         textarea::placeholder {
             font-size: 1em;
@@ -70,6 +70,14 @@
             text-decoration: none;
             color: #fff;
             display: inline-block;
+        }
+        @media (min-width: 320px) and (max-width: 480px) {
+            textarea.placeholder {
+                height: 3.5em;
+            }
+            html, body {
+                padding: 0px 15px;
+            }
         }
     </style>
 </head>
