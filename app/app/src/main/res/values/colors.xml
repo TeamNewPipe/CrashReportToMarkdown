@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">@color/dark_peertube_dark_color</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">@color/dark_soundcloud_primary_color</color>
+
+    <color name="dark_youtube_statusbar_color">#ff4336</color>
+
+
+    <color name="light_youtube_statusbar_color">#ff4336</color>
+
+    <color name="light_youtube_primary_color">#e53935</color>
+    <color name="dark_youtube_primary_color">#CD322E</color>
+    <color name="dark_youtube_accent_color">#FFFFFF</color>
+    <color name="dark_peertube_dark_color">#c43e00</color>
+    <color name="dark_soundcloud_primary_color">#f57c00</color>
 </resources>
