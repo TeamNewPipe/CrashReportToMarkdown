@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.schabi.newpipe.crashreporttomarkdown.MainActivity">
+
+    <item
+        android:id="@+id/clear"
+        android:icon="@drawable/ic_backspace_white_24dp"
+        app:showAsAction="ifRoom"
+        tools:ignore="MenuTitle" />
+
+
+    <item
+        android:id="@+id/theme"
+        android:icon="@drawable/ic_settings_brightness_white_24dp"
+        app:showAsAction="ifRoom"
+        tools:ignore="MenuTitle" />
+</menu>

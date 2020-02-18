@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:id="@+id/textViewMainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:gravity="center"
+        android:text="@string/title"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTitlePaste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:text="@string/paste_info"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMainTitle" />
+
+    <EditText
+        android:id="@+id/editTextError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:hint="@string/paste_info"
+        android:maxHeight="@dimen/max_edit_text_height"
+        app:layout_constraintStart_toStartOf="@+id/textViewTitlePaste"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitlePaste" />
+
+    <!-- Background color and radius can be edited in drawable/button.xml   -->
+    <Button
+        android:id="@+id/transform_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:background="@drawable/button"
+        android:text="@string/transform"
+        app:layout_constraintStart_toStartOf="@+id/editTextError"
+        app:layout_constraintTop_toBottomOf="@+id/editTextError" />
+
+    <EditText
+        android:id="@+id/markdownEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_markdown"
+        android:maxHeight="@dimen/max_edit_text_height"
+        app:layout_constraintStart_toStartOf="@+id/transform_button"
+        app:layout_constraintTop_toBottomOf="@+id/transform_button" />
+
+    <Button
+        android:id="@+id/copy_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:background="@drawable/button"
+        android:text="@string/copy_to_clipboard"
+        app:layout_constraintStart_toStartOf="@+id/markdownEditText"
+        app:layout_constraintTop_toBottomOf="@+id/markdownEditText" />
+
+    <Button
+        android:id="@+id/preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:text="@string/preview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.595"
+        app:layout_constraintStart_toEndOf="@+id/copy_button"
+        app:layout_constraintTop_toBottomOf="@+id/markdownEditText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

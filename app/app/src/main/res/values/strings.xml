@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CrashReportToMarkdown</string>
+    <string name="action_settings">Settings</string>
+    <string name="title">The incredible NPE to Markdown converter</string>
+    <string name="paste_info">Paste the JSON bugreport here</string>
+    <string name="transform">transform</string>
+    <string name="hint_markdown">Click transform and your human readable bugreport will appear here.</string>
+    <string name="copy_to_clipboard">copy to clipboard</string>
+    <string name="empty_text">Please insert some text!</string>
+    <string name="copied_to_clipboard">Copied to clipboard!</string>
+    <string name="home">Home</string>
+    <string name="text_cleared">Text cleared</string>
+    <string name="already_empty">Already empty!</string>
+    <string name="wip">Work in progress</string>
+    <string name="error_occured">Cannot convert bug report to Markdown</string>
+    <string name="preview">Preview the human\nreadable bugreport</string>
+    <string name="error_while_parsing">error_while_parsing</string>
+    <string name="parsing_error_message">An error happened while converting to markdown. Please make sure your bugreport is valid.</string>
+</resources>
