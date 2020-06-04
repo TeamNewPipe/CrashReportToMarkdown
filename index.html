@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Error Report to Markdown reporter</title>
+    <link rel="icon" href="icons/report_problem-black-192dp.svg">
     <style>
         html, body {
             font-family: Roboto, Arial, sans-serif;
@@ -86,10 +87,12 @@
     <h3>Paste the JSON bugreport here</h3>
     <div><textarea rows="1" cols="150" id="input" class="placeholder" placeholder="Paste the JSON bugreport here" onchange="onResize(this)" onkeyup="onResize(this)"></textarea></div>
     <button onClick="onTransform()">transform</button>
-    <div><textarea rows="1" cols="150" id="output" class="placeholder" placeholder="Click transform and your human readable bugreport will appear here.  "></textarea></div>
+    <div><textarea rows="1" cols="150" id="output" class="placeholder" placeholder="Click transform and your human readable bugreport will appear here."></textarea></div>
     <h3>Paste it into your Github issue</h3>
     <button onClick="onCopy()">copy to clipboard</button>
-    <a href="https://github.com/TeamNewPipe/NewPipe/issues/new"><button>new issue</button></a>
+    <form style="display:inline;" action="https://github.com/TeamNewPipe/NewPipe/issues/new?assignees=&labels=bug&template=bug_report.md" method="get">
+        <button>new issue</button>
+    </form>
     <span id="clipboard-message">Copied to clipboard!</span>
 
 <script>
@@ -155,5 +158,11 @@
         else el.classList.remove("placeholder");
     }
 </script>
+
+<noscript>
+    <p>
+        Please enable javascript, otherwise you won't be able to convert the crash report. You can see its (little) code <a href="https://github.com/TeamNewPipe/CrashReportToMarkdown">here</a>.
+    </p>
+</noscript>
 </body>
 </html>
